@@ -6,10 +6,3 @@ time_cols     = ["Open_Time", "Reopen_Time", "Resolved_Time", "Close_Time"]
 duration_cols = ["Handle_Time_hrs"]
 drop_cols     = ["number_cnt"]
 
-import sys, importlib
-importlib.invalidate_caches()
-sys.path.append("../src")
-from columns import *
-
-grouped = id_cols + cat_cols + ordinal_cols + count_cols + time_cols + duration_cols + drop_cols
-print(len(grouped), set(df.columns) - set(grouped))
