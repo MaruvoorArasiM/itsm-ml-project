@@ -74,3 +74,27 @@ Dataset: dataset\_list (46,606 rows, 25 columns). Only aggregate counts are reco
 
 \- What may be published publicly (code, charts, results)?
 
+
+
+number\_cnt is uniform random (mean 0.50, std 0.289): drop.
+
+Closure\_Code: “Unknown” is a real value (1,590); the other 460 are blank, so map them to “Not Recorded”.
+
+Time columns use dd-mm-yyyy hh:mm, spanning 2012 to 2014.
+
+
+
+Handle\_Time\_hrs has mixed formats: decimal comma in about 15,000 rows, and a digit-grouped integer, probably hours × 10^6, in about 31,000 rows. Fix pending verification.
+
+
+
+
+
+Shape (46606, 26): 25 original columns, plus Has\_Reopen\_Time, Has\_Related\_Change and Elapsed\_hrs, minus the two dropped columns.
+
+Handle\_Time\_hrs has 31,253 nulls, not the 31,252 I predicted. My count was off by one: it’s the 31,252 failed conversions plus the 1 stray blank we saw earlier. Nothing is wrong.
+
+Every remaining null is a deliberate one: Related\_Change 46,046, Reopen\_Time 44,322, Resolved\_Time 1,780, Impact and Priority 1,380 each, No\_of\_Related\_Interactions 114, No\_of\_Reassignments 1. Closure\_Code, CI\_Cat and CI\_Subcat are now complete.
+
+Elapsed\_hrs is sound. No ticket closes before it opens (0 rows). The median is 18.4 hours, but the mean is 123 and the maximum is 15,723 hours (about 655 days). That heavy right skew is the reason the outlier and Yeo-Johnson steps exist, and it matters for EDA charts and for any model that depends on distances. It’s also a post-event field, so it can’t be a feature.
+
