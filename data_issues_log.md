@@ -128,3 +128,11 @@ Track 2 has 182 days of history, so quarterly and annual forecasts aren’t supp
 
 Questions for the mentor: Was the extract cut by close date? Is “22 to 25k” per quarter? Is data outside this window available?
 
+
+
+The window start is clean, but the end is right-censored. Tickets opened in late March and still open on 31 March are absent. The evidence is weekly median elapsed time falling 11.0, 6.0, 3.9, 1.8 over the last four weeks. The cut-off is pending.
+
+Survivorship is confirmed: tickets opened before 1 Oct 2013 have 1 High in 1,114 labelled (0.09%), against 699 in 44,112 (1.58%) from October onward. They’re excluded from modelling.
+
+9 tickets have Status “Work in progress” and a Close\_Time, all within October 2013. No action.
+
