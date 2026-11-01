@@ -224,3 +224,5 @@ data/
 models/
 *.pdf
 docs/
+# Local agent instructions (private)
+CLAUDE.md
