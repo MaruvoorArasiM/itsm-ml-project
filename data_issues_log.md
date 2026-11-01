@@ -98,3 +98,33 @@ Every remaining null is a deliberate one: Related\_Change 46,046, Reopen\_Time 4
 
 Elapsed\_hrs is sound. No ticket closes before it opens (0 rows). The median is 18.4 hours, but the mean is 123 and the maximum is 15,723 hours (about 655 days). That heavy right skew is the reason the outlier and Yeo-Johnson steps exist, and it matters for EDA charts and for any model that depends on distances. It’s also a post-event field, so it can’t be a feature.
 
+
+
+
+
+Volume: about 95% or more of tickets open from October 2013 to March 2014, and few before that (exact share pending Cell 6). Hypothesis: extract selected by close date. Impact: Track 2 limited to daily or weekly, and the split goes inside the dense window.
+
+High priority (P1+P2) is 700 of 45,226 rows (1.55%).
+
+Category has 1 “request for change”, so it can’t define the Track 4 target.
+
+No text or department column exists. Question for the mentor: what should Track 3 tag?
+
+Closure\_Code, No\_of\_Reassignments and the related-record counts are likely post-event. Confirm with the mentor.
+
+
+
+
+
+Scope: 46,606 tickets closed 2013-10-01 to 2014-03-31. 97.5% were also opened in that window, and 1,150 were opened earlier (the backlog).
+
+Survivorship: pre-October tickets have 1 High in 1,114 labelled (0.09%), against 1.58% in the window. They are excluded from modelling.
+
+The High rate drifts from 2.13% (Oct) to 1.10 to 1.29% (Feb to Mar).
+
+Track 2 has 182 days of history, so quarterly and annual forecasts aren’t supported.
+
+9 tickets have Status “Work in progress” with a Close\_Time.
+
+Questions for the mentor: Was the extract cut by close date? Is “22 to 25k” per quarter? Is data outside this window available?
+
