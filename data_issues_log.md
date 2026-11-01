@@ -270,6 +270,34 @@ Test period already viewed several times, so decisions used rolling folds (Dec, 
 
 
 
+\### Coefficients by column (saved model)
+
+Read from models/track1\_priority\_lr.joblib on 2026-11-01: 166 one-hot features, intercept -0.886, largest |coef| 1.755 (odds about 5.8 times). Sum and mean of |coef| per input column:
+
+| Column | Features | Sum of abs coef | Mean per feature |
+
+|---|---|---|---|
+
+| WBS | 99 | 22.66 | 0.23 |
+
+| CI\_Subcat | 27 | 6.61 | 0.24 |
+
+| hour | 18 | 5.15 | 0.29 |
+
+| CI\_Cat | 12 | 2.87 | 0.24 |
+
+| weekday | 7 | 2.67 | 0.38 |
+
+| Category | 3 | 1.95 | 0.65 |
+
+\- The sum grows with the number of values, so WBS leads on the sum only; per feature, Category and weekday move the odds most.
+
+\- Neither number is contribution to performance (that depends on how often each value occurs). Drop-column or permutation AP on January would answer that (not run).
+
+\- The saved bundle holds class\_weight=None, so the balanced weights were passed at fit time as sample weights. 98 of the 166 feature names contain WBS codes: the file stays private.
+
+
+
 \### Open questions for the mentor
 
 1\. Was the extract cut by close date? Is data outside 1 Oct 2013 to 31 Mar 2014 available?
@@ -306,7 +334,7 @@ Test period already viewed several times, so decisions used rolling folds (Dec, 
 
 \- Set B test table across all five models was not recorded.
 
-\- Coefficient totals per column (to see where the weight sits).
+\- Coefficient totals per column: done (see "Coefficients by column"). Drop-column AP still to run.
 
 \- Cause of the 4 tickets missed in Set A.
 
