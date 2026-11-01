@@ -144,3 +144,11 @@ Track 1 split: train/tune Oct to Jan with 30,845 labelled and 541 High (1.75%), 
 
 A baseline that always predicts “not High” would be about 98.9% accurate on the test period, so accuracy is not a useful metric. Use recall, precision and average precision.
 
+
+
+
+
+Track 1 feature exclusions. Firm (post-event): Status, Resolved\_Time, Close\_Time, Reopen\_Time, Has\_Reopen\_Time, Handle\_Time\_hrs, Elapsed\_hrs, Closure\_Code. Timing unconfirmed: No\_of\_Reassignments, No\_of\_Related\_\*, Has\_Related\_Change, KB\_number (excluded from the headline, sensitivity check later). Identifiers: Incident\_ID, Related\_Interaction, Related\_Change.
+
+CI\_Name has 76% of High tickets on CIs with under 30 training rows, probably individual computers. It’s excluded from the baseline and tested afterwards.
+
