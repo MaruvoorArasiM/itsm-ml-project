@@ -322,6 +322,30 @@ Read from models/track1\_priority\_lr.joblib on 2026-11-01: 166 one-hot features
 
 
 
+\### Track 1: evaluation addendum
+
+\- Target: High = Priority in (1, 2), labelled tickets only. Across the whole file, 695 of 700 High tickets have Impact 1 or 2 (the other 5 are Impact 3), so High is nearly "Impact 1 or 2". This is why Impact and Urgency are excluded (Q4).
+
+\- Test period (10,229 tickets, 115 High) was also scored for Set A, the sensitivity variants and the rolling folds. The headline model, features and threshold were fixed before any of them, and none changed them.
+
+\- Rule baselines: "computer" flags 765 (7.5%), catches 62, recall 0.539, precision 0.081; "computer and incident" flags 742, catches 62, precision 0.084. The model at the same volumes catches 83 (recall 0.722, precision 0.108 and 0.112).
+
+\- Alert budgets: top 1.0%: 102 alerts, 50 caught; 2.2%: 225, 67; 5.0%: 511, 80; 10.0%: 1,023, 92.
+
+\- Segments at threshold 0.678: computer 765 tickets, 62 High, 153 alerts, 60 caught (0.97); other assets 9,464 tickets, 53 High, 72 alerts, 7 caught (0.13). Night or weekend: 178 tickets, 7 High, 45 alerts, 3 caught. Normal hours: 10,051 tickets, 108 High, 180 alerts, 64 caught. Incidents: 114 High, 67 caught; the 1 High request for information was missed.
+
+\- Recall interval resampling whole days: 0.49 to 0.672 (ticket-level: 0.496 to 0.672).
+
+\- Recall gap (0.70 on validation, 0.583 on test): the Oct to Dec model on test caught 66 of 115 (0.574, 224 alerts) against 67 for the final model, so refitting is not the cause. Feb 45 of 79 (0.57); 1 to 16 Mar 22 of 36 (0.611). Computer share of High tickets: Oct 0.60, Nov 0.61, Dec 0.71, Jan 0.65, Feb 0.53, Mar 0.56; training 345 of 541 (64%), test 62 of 115 (54%). Reading: recall depends on the asset mix (estimated, not verified); the rest fits threshold-selection optimism and noise.
+
+\- Six unconfirmed-timing fields at equal alert volume (225): 79 of 115 caught (recall 0.687, precision 0.351) against 67 (0.583, 0.298); computers 60 of 62 in both, other assets 19 of 53 against 7. Single fields (CV AP / test AP): Reassignments 0.456/0.321, Related\_Interactions 0.450/0.317, Related\_Incidents 0.461/0.345, Related\_Changes 0.455/0.328, Has\_Related\_Change 0.455/0.329, KB\_number 0.485/0.346. KB\_number has no blanks, so it may be assigned late. Not used in the headline (Q5).
+
+\- Coefficient weight (sum of absolute values): WBS 22.66 (99 columns), CI\_Subcat 6.61, hour 5.15, CI\_Cat 2.87, weekday 2.67, Category 1.95. Rough guide only: sums grow with the number of categories.
+
+\- History features on rolling folds (mean AP): recent-ticket counts 0.389, prior High rate of CI and WBS 0.414, both 0.416, against 0.391 for Set B. The first three folds tie (0.430 against 0.429); the gain is the 36-ticket March fold. Non-computer recall at 2.2% alerts 0.072 to 0.190. Not adopted. New mentor question (Q12): is priority fixed at ticket creation?
+
+
+
 \### Track 2: volume forecasting (planned)
 
 \- Series: 167 daily counts, 1 Oct 2013 to 16 Mar 2014 (42,304 tickets); about 24 weeks, so daily or weekly horizons only.
