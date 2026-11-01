@@ -136,3 +136,11 @@ Survivorship is confirmed: tickets opened before 1 Oct 2013 have 1 High in 1,114
 
 9 tickets have Status “Work in progress” and a Close\_Time, all within October 2013. No action.
 
+
+
+Final modelling window: opened 2013-10-01 to 2014-03-16, 42,304 rows (41,074 labelled, 1,230 unlabelled).
+
+Track 1 split: train/tune Oct to Jan with 30,845 labelled and 541 High (1.75%), and test 1 Feb to 16 Mar with 10,229 labelled and 115 High (1.12%).
+
+A baseline that always predicts “not High” would be about 98.9% accurate on the test period, so accuracy is not a useful metric. Use recall, precision and average precision.
+
