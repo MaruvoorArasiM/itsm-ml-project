@@ -6,7 +6,25 @@ Dataset: dataset\_list (46,606 rows, 25 columns). Only aggregate counts are reco
 
 
 
-\## Hidden missing values
+\## Dataset scope
+
+\- All 46,606 tickets were closed between 2013-10-01 and 2014-03-31 (Close\_Time range). Open\_Time spans 2012 to 2014 and uses the format dd-mm-yyyy hh:mm.
+
+\- 97.5% were also opened in that window; 1,150 were opened earlier (the backlog still open on 1 October). Monthly volume is near zero before October 2013 (median month: 10 tickets), then 6,000 to 8,600 a month. The extract therefore appears to be cut by close date; the reason is a mentor question.
+
+\- Survivorship: tickets opened before 1 Oct 2013 have 1 High in 1,114 labelled (0.09%), against 699 in 44,112 (1.58%) from October onward. They are excluded from modelling.
+
+\- The end of the window is right-censored: tickets opened in late March and still open on 31 March are absent. The share of tickets over 72 hours falls from a 24 to 27% plateau to 19.2%, 9.9% and 0.0% from the week of 17 March. (Weekly median elapsed time is too unstable to use for this check.)
+
+\- Modelling window: opened 2013-10-01 to 2014-03-16, 42,304 rows (41,074 labelled, 1,230 unlabelled).
+
+\- Track 2 has 182 days in the extract and 167 after trimming the censored end (about 24 weeks): daily or weekly forecasts only, no quarterly or annual horizon.
+
+\- The High rate by month falls from 2.13% (Oct) to 1.10 and 1.29% (Feb and Mar).
+
+
+
+\## Hidden missing values (placeholders stored as text)
 
 
 
@@ -14,23 +32,23 @@ Dataset: dataset\_list (46,606 rows, 25 columns). Only aggregate counts are reco
 
 |---|---|---|---|
 
-| Related\_Change, No\_of\_Related\_Changes | 46,046 | Blank means no change linked (560 linked) | Has\_Related\_Change flag, counts to 0 |
+| Related\_Change, No\_of\_Related\_Changes | 46,046 | Blank means no change linked (560 linked) | Has\_Related\_Change flag; counts to 0 |
 
-| No\_of\_Related\_Incidents | 45,384 | Probably none (1,222 linked) | Fill with 0 |
+| No\_of\_Related\_Incidents | 45,384 | Blank means none (1,222 linked) | Fill with 0 |
 
-| Reopen\_Time | 44,322 | Never reopened (2,284 reopened) | Has\_Reopen\_Time flag |
+| Reopen\_Time | 44,322 | Never reopened (2,284 reopened) | Has\_Reopen\_Time flag; left null |
 
-| Closure\_Code | 2,050 | Not recorded | "Not Recorded" |
+| Closure\_Code | 460 blank (a further 1,590 are the real value "Unknown") | Not recorded | "Not Recorded" |
 
-| Resolved\_Time | 1,780 | Missing timestamp | Leave blank, not a feature |
+| Resolved\_Time | 1,780 | Missing timestamp | Left null; not a feature |
 
-| Impact, Priority | 1,380 each (NS and NA) | Same rows, label unknown | Exclude from Track 1 labels |
+| Impact, Priority | 1,380 each (NS and NA) | Same rows, label unknown | Left null; excluded from Track 1 labels |
 
-| No\_of\_Related\_Interactions | 114 | Unclear | Check, probably 0 |
+| No\_of\_Related\_Interactions | 114 | Unclear | Left null |
 
 | CI\_Cat, CI\_Subcat | 111 each | Unknown asset type | "Unknown" |
 
-| Handle\_Time\_hrs, No\_of\_Reassignments | 1 each | Stray blanks | Inspect those rows |
+| Handle\_Time\_hrs, No\_of\_Reassignments | 1 each | Stray blanks | Left null |
 
 
 
@@ -42,113 +60,253 @@ Dataset: dataset\_list (46,606 rows, 25 columns). Only aggregate counts are reco
 
 |---|---|---|
 
-| All 25 columns are strings | df.info() | Convert numerics and datetimes |
+| All 25 columns are strings | df.info() | Numerics and datetimes converted |
 
-| Handle\_Time\_hrs uses comma decimals | 46,349 rows | Replace comma, convert to float |
+| Handle\_Time\_hrs has two formats | 46,349 values contain a comma; 31,252 of them are digit-grouped integers (pattern 9,99,99,99,999) that cannot be read as decimals, about 15,100 are decimal commas | Repair using elapsed time tested and rejected (29% agreement against about 4% by chance). Parsed values kept, the rest null (31,253 nulls including 1 blank); excluded from features; Elapsed\_hrs derived from timestamps instead |
 
-| Priority equals a lookup of Impact and Urgency | Crosstab has one value per pair | Test with and without Impact and Urgency |
+| Handle\_Time\_hrs is not simply elapsed time | Even parsed rows match Close\_Time minus Open\_Time within 5% only 56% of the time; the brief's sample record shows 3,871.7 hours against about 15,300 hours elapsed | Mentor question: what does it measure? |
 
-| Severe class imbalance | 3 P1, 697 P2, about 1.5% high priority | Merge P1 and P2 into High |
+| Priority equals a lookup of Impact and Urgency | Crosstab has one value per pair | Impact and Urgency excluded from the headline features; Set A uses them as a contrast only |
 
-| number\_cnt looks like random noise | All values unique, not in brief | Drop after check |
+| Severe class imbalance | 3 P1 and 697 P2: 700 High of 45,226 labelled (1.55%) | P1 and P2 merged into High; metrics: recall, precision, average precision |
 
-| Alert\_Status is constant ("closed") | 46,606 identical rows | Drop |
+| number\_cnt is uniform random | Mean 0.500, std 0.289, all 46,606 values unique; not in the brief | Dropped |
 
-| Status is 99.98% Closed and only known after handling | value\_counts | Drop |
+| Alert\_Status is constant | "closed" in all 46,606 rows | Dropped |
 
-| Urgency has the label "5 - Very Low" | 1 row | Recode to 5 |
+| Status is 99.98% Closed and known only after handling | value\_counts | Kept in the clean file; excluded from features |
 
-| No duplicates | 46,606 unique Incident\_ID | No action |
+| Urgency has the label "5 - Very Low" | 1 row | Recoded to 5 |
 
+| Duplicates | 46,606 unique Incident\_ID | None |
 
+| 9 tickets have Status "Work in progress" and a Close\_Time | All opened and closed within October 2013 | No action |
 
-\## Open questions for mentor
+| Elapsed\_hrs (Close\_Time minus Open\_Time) | Median 18.4 hours, mean 123.1, maximum 15,722.6; no ticket closes before it opens | Heavy right skew; post-event, so not a feature |
 
+| Category has a single "request for change" | value\_counts | Cannot define the Track 4 target; Has\_Related\_Change (560 tickets) is the candidate |
 
+| No free-text or department column | Column list | Track 3 target undefined (mentor question) |
 
-\- What is number\_cnt?
 
-\- Which field defines the RFC target for Track 4?
 
-\- Should Impact and Urgency be allowed as features for Track 1?
+Clean file: 46,606 rows x 26 columns (25 original, minus 2 dropped, plus Has\_Reopen\_Time, Has\_Related\_Change and Elapsed\_hrs). Datetime nulls (Reopen\_Time 44,322, Resolved\_Time 1,780) are left as null; no imputation.
 
-\- What may be published publicly (code, charts, results)?
 
 
+\## Track 1 feature decisions
 
-number\_cnt is uniform random (mean 0.50, std 0.289): drop.
+\- Firm exclusions (post-event): Status, Resolved\_Time, Close\_Time, Reopen\_Time, Has\_Reopen\_Time, Handle\_Time\_hrs, Elapsed\_hrs, Closure\_Code.
 
-Closure\_Code: “Unknown” is a real value (1,590); the other 460 are blank, so map them to “Not Recorded”.
+\- Timing unconfirmed (excluded from the headline; tested as a sensitivity run): No\_of\_Reassignments, No\_of\_Related\_\*, Has\_Related\_Change, KB\_number.
 
-Time columns use dd-mm-yyyy hh:mm, spanning 2012 to 2014.
+\- Identifiers (not features): Incident\_ID, Related\_Interaction, Related\_Change.
 
+\- month is excluded: the test months (Feb, Mar) never occur in training. hour and weekday are used.
 
+\- CI\_Name: 2,471 values in training; 4.9% of test rows carry a value never seen in training; 76% of High tickets sit on CIs with under 30 training rows. Excluded from the baseline; adding it gave no gain (see sensitivity runs).
 
-Handle\_Time\_hrs has mixed formats: decimal comma in about 15,000 rows, and a digit-grouped integer, probably hours × 10^6, in about 31,000 rows. Fix pending verification.
+\- WBS: 255 values in training; 0.6% of test rows unseen. Encoding: one-hot with values under 30 training rows pooled into an "infrequent" bucket, fitted on training data only.
 
+\- The test period High rate is 1.12% (115 of 10,229), so always predicting Not High scores 0.9888 accuracy. Metrics: recall, precision, average precision.
 
 
 
+\## Track 1: modelling log
 
-Shape (46606, 26): 25 original columns, plus Has\_Reopen\_Time, Has\_Related\_Change and Elapsed\_hrs, minus the two dropped columns.
 
-Handle\_Time\_hrs has 31,253 nulls, not the 31,252 I predicted. My count was off by one: it’s the 31,252 failed conversions plus the 1 stray blank we saw earlier. Nothing is wrong.
 
-Every remaining null is a deliberate one: Related\_Change 46,046, Reopen\_Time 44,322, Resolved\_Time 1,780, Impact and Priority 1,380 each, No\_of\_Related\_Interactions 114, No\_of\_Reassignments 1. Closure\_Code, CI\_Cat and CI\_Subcat are now complete.
+\### Pipeline notes
 
-Elapsed\_hrs is sound. No ticket closes before it opens (0 rows). The median is 18.4 hours, but the mean is 123 and the maximum is 15,723 hours (about 655 days). That heavy right skew is the reason the outlier and Yeo-Johnson steps exist, and it matters for EDA charts and for any model that depends on distances. It’s also a post-event field, so it can’t be a feature.
+\- Validation: time-ordered folds (3) inside the training period for tuning; January used to choose the alert threshold; test period (1 Feb to 16 Mar) scored for the headline result.
 
+\- Imbalance: balanced sample weights, not SMOTE (features are one-hot categories, so synthetic rows are not meaningful).
 
+\- Outlier capping, Yeo-Johnson and scaling are not applied: Track 1 features are categorical plus hour and weekday; the skewed numeric columns are post-event and excluded.
 
+\- Explanation: logistic regression coefficients instead of SHAP.
 
+\- models/track1\_priority\_lr.joblib contains asset codes. It is git-ignored; do not publish until the mentor confirms what may be shared.
 
-Volume: about 95% or more of tickets open from October 2013 to March 2014, and few before that (exact share pending Cell 6). Hypothesis: extract selected by close date. Impact: Track 2 limited to daily or weekly, and the split goes inside the dense window.
 
-High priority (P1+P2) is 700 of 45,226 rows (1.55%).
 
-Category has 1 “request for change”, so it can’t define the Track 4 target.
+\### Model comparison (asset and time fields, time-ordered CV, average precision)
 
-No text or department column exists. Question for the mentor: what should Track 3 tag?
+| Model | CV average precision |
 
-Closure\_Code, No\_of\_Reassignments and the related-record counts are likely post-event. Confirm with the mentor.
+|---|---|
 
+| Logistic regression (C=0.01) | 0.451 |
 
+| XGBoost | 0.445 |
 
+| Gradient boosting | 0.442 |
 
+| Random forest | 0.428 |
 
-Scope: 46,606 tickets closed 2013-10-01 to 2014-03-31. 97.5% were also opened in that window, and 1,150 were opened earlier (the backlog).
+| Decision tree | 0.405 |
 
-Survivorship: pre-October tickets have 1 High in 1,114 labelled (0.09%), against 1.58% in the window. They are excluded from modelling.
+Random model: 0.0175 (training High rate). Grids were small, so winners sit on grid edges; with C extended to 0.003 to 0.1, C=0.01 still won.
 
-The High rate drifts from 2.13% (Oct) to 1.10 to 1.29% (Feb to Mar).
 
-Track 2 has 182 days of history, so quarterly and annual forecasts aren’t supported.
 
-9 tickets have Status “Work in progress” with a Close\_Time.
+\### Set A (Impact and Urgency included): not a result
 
-Questions for the mentor: Was the extract cut by close date? Is “22 to 25k” per quarter? Is data outside this window available?
+Recall 0.965 (111 of 115) for all five models, CV AP 0.994 to 1.000, test AP 0.955 to 0.991, because Priority is a lookup of Impact and Urgency. The same 4 High tickets are missed by every model; cause not checked (possibly rare Impact and Urgency combinations pooled by the encoder).
 
 
 
-The window start is clean, but the end is right-censored. Tickets opened in late March and still open on 31 March are absent. The evidence is weekly median elapsed time falling 11.0, 6.0, 3.9, 1.8 over the last four weeks. The cut-off is pending.
+\### Test result (headline: logistic regression, asset and time fields)
 
-Survivorship is confirmed: tickets opened before 1 Oct 2013 have 1 High in 1,114 labelled (0.09%), against 699 in 44,112 (1.58%) from October onward. They’re excluded from modelling.
+| Measure | Value |
 
-9 tickets have Status “Work in progress” and a Close\_Time, all within October 2013. No action.
+|---|---|
 
+| Threshold | 0.678, chosen on January for 70% recall (validation precision 0.27) |
 
+| Confusion matrix | 9956 / 158 / 48 / 67 |
 
-Final modelling window: opened 2013-10-01 to 2014-03-16, 42,304 rows (41,074 labelled, 1,230 unlabelled).
+| Recall | 0.583 (67 of 115), 95% bootstrap interval 0.496 to 0.672 |
 
-Track 1 split: train/tune Oct to Jan with 30,845 labelled and 541 High (1.75%), and test 1 Feb to 16 Mar with 10,229 labelled and 115 High (1.12%).
+| Precision | 0.298, interval 0.239 to 0.358 |
 
-A baseline that always predicts “not High” would be about 98.9% accurate on the test period, so accuracy is not a useful metric. Use recall, precision and average precision.
+| ROC-AUC | 0.934 |
 
+| Average precision | 0.315 (28 times the 0.0112 base rate); CV was 0.451 (26 times 0.0175) |
 
+| Accuracy | 0.980, below the always-negative 0.9888 |
 
+| Alerts | about 5 a day of about 232 labelled tickets a day |
 
 
-Track 1 feature exclusions. Firm (post-event): Status, Resolved\_Time, Close\_Time, Reopen\_Time, Has\_Reopen\_Time, Handle\_Time\_hrs, Elapsed\_hrs, Closure\_Code. Timing unconfirmed: No\_of\_Reassignments, No\_of\_Related\_\*, Has\_Related\_Change, KB\_number (excluded from the headline, sensitivity check later). Identifiers: Incident\_ID, Related\_Interaction, Related\_Change.
 
-CI\_Name has 76% of High tickets on CIs with under 30 training rows, probably individual computers. It’s excluded from the baseline and tested afterwards.
+\- Validation recall of 0.70 did not reproduce on test; test noise alone does not explain it (the interval excludes 0.70). Intervals treat tickets as independent.
+
+\- Operating points (threshold set on validation, applied to test):
+
+
+
+| Validation recall target | Alerts per day | High caught | Test recall | Test precision |
+
+|---|---|---|---|---|
+
+| 0.5 | 2.6 | 53 | 0.461 | 0.461 |
+
+| 0.6 | 2.8 | 58 | 0.504 | 0.468 |
+
+| 0.7 | 5.1 | 67 | 0.583 | 0.298 |
+
+| 0.8 | 22.5 | 91 | 0.791 | 0.092 |
+
+| 0.9 | 44.4 | 103 | 0.896 | 0.053 |
+
+
+
+\- Limitation: priority is predicted at ticket creation from asset and time fields only.
+
+
+
+\### What the model uses (logistic coefficients, associations only)
+
+Towards High: Category incident (+0.96), hours 6 and 7 (+0.73, +0.72), Sunday (+0.71), Saturday (+0.50), CI\_Cat networkcomponents (+0.65), Unknown (+0.44), computer (+0.32). Towards Not High: request for information (-0.97), hour 15 (-0.55), Wednesday (-0.50), hour 12 (-0.49), Tuesday (-0.38).
+
+\- CI\_Cat computer: 13.26% High in normal hours (2,436 tickets), 27.50% at night or weekends (80); other assets 0.57% and 6.60%. Most of the computer effect is not a night effect. Its small coefficient is unexplained (check on CI\_Subcat and WBS pending).
+
+\- CI\_Cat Unknown (blank in source): 97 training tickets, 8 High (8.2%); the coefficient rests on 8 events.
+
+\- Interaction not modelled: night or weekend raises the High rate 11.5 times for other assets, 2.1 times for computers.
+
+
+
+\### Sensitivity runs (logistic regression)
+
+| Features | CV AP | Test AP | Test ROC-AUC |
+
+|---|---|---|---|
+
+| Asset and time (headline) | 0.451 | 0.315 | 0.934 |
+
+| + CI\_Name | 0.452 | 0.319 | 0.936 |
+
+| + six unconfirmed-timing fields | 0.493 | 0.397 | 0.962 |
+
+
+
+\- CI\_Name adds nothing: excluded.
+
+\- Single fields: KB\_number +0.034 CV AP (largest); No\_of\_Related\_Incidents +0.030 test AP; the other four add at most +0.014 test AP.
+
+\- Rolling monthly folds, six fields (C=0.03): AP 0.549, 0.503, 0.436, 0.368 (mean 0.464) against 0.510, 0.410, 0.370, 0.274 (mean 0.391); the gain appears in every fold. Consistency does not separate real signal from leakage, so the headline stays on asset and time fields until the mentor confirms.
+
+\- The test period was also scored for these variants; none was selected on it.
+
+
+
+\### Optimisation (rolling-origin CV, 4 monthly folds, 345 High tickets)
+
+Test period already viewed several times, so decisions used rolling folds (Dec, Jan, Feb, 1 to 16 Mar; High counts 130, 100, 79, 36). Time features were fixed a priori (office hours 8 to 18, weekend).
+
+| Model | Mean AP | Recall at 2.2% alerts |
+
+|---|---|---|
+
+| LR, asset and time (current) | 0.391 | 0.613 |
+
+| LR + time features | 0.392 | 0.614 |
+
+| XGBoost + time features | 0.402 | 0.620 |
+
+| XGBoost deeper | 0.402 | 0.627 |
+
+| Rank average of LR and XGBoost | 0.402 | 0.626 |
+
+\- Gains of at most +0.011 are within noise: logistic regression stays.
+
+\- LR lift over the base rate is 23 to 34 times across folds, so the AP fall tracks the falling High rate.
+
+\- Tree models lose the smallest-training fold and win later ones, so they may need more data (untested).
+
+\- Rejected without testing: SMOTE (one-hot categories), neural networks (541 positives), re-adding CI\_Name.
+
+
+
+\### Open questions for the mentor
+
+1\. Was the extract cut by close date? Is data outside 1 Oct 2013 to 31 Mar 2014 available?
+
+2\. What is number\_cnt?
+
+3\. What format is Handle\_Time\_hrs meant to have?
+
+4\. Is High (priority 1 or 2) the right target, with Impact and Urgency excluded from the features because Priority is a lookup of them?5. Which fields exist at creation: KB\_number, No\_of\_Related\_Incidents, No\_of\_Related\_Interactions, No\_of\_Related\_Changes, Related\_Change, No\_of\_Reassignments?
+
+6\. What recall and alert volume could the service desk accept?
+
+7\. Is Category set at creation?
+
+8\. Are night and weekend tickets automated alerts?
+
+9\. Track 3: what should be tagged (no text or department column)?
+
+10\. Track 4: which field defines the RFC target?
+
+11\. What may be published (code, aggregate results, charts)?
+
+
+
+\### Track 2: volume forecasting (planned)
+
+\- Series: 167 daily counts, 1 Oct 2013 to 16 Mar 2014 (42,304 tickets); about 24 weeks, so daily or weekly horizons only.
+
+\- Evaluation: rolling origin, 7-day horizon, 38 origins (31 Jan to 9 Mar); daily WAPE and weekly-total error (MAPE avoided because of low weekend counts). Models: repeat last week, 4-week weekday mean, Holt-Winters. Results to follow.
+
+
+
+\### Pending checks
+
+\- Set B test table across all five models was not recorded.
+
+\- Coefficient totals per column (to see where the weight sits).
+
+\- Cause of the 4 tickets missed in Set A.
 
