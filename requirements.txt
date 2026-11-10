@@ -102,7 +102,7 @@ six==1.17.0
 soupsieve==3.0.4
 SQLAlchemy==2.1.6
 stack-data==0.6.3
-statsmodels
+statsmodels==0.15.0
 terminado==0.18.1
 threadpoolctl==3.7.0
 tinycss2==1.5.1
@@ -118,3 +118,7 @@ webencodings==0.6.1
 websocket-client==1.9.2
 widgetsnbextension==4.0.16
 xgboost==3.2.0
+formulaic==1.2.2
+patsy==1.0.3
+interface-meta==2.0.1
+wrapt==2.5.2
