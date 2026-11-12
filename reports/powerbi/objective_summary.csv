@@ -1,0 +1,5 @@
+Objective_No,Objective,Result,Business_Value,Next_Step,Status
+1,Spot critical tickets early,Catches 58% of P1/P2 tickets by flagging only 2.2% of tickets (about 5 alerts a day),Critical tickets get attention sooner: 83 caught vs 62 for a simple rule at the same alert volume,Pilot a daily alert list with the service desk,Ready for pilot
+2,Plan ticket volumes,"About 18,500-19,100 incidents a quarter; about 75,000 in the next 12 months",Baseline for staffing and capacity planning,Refresh monthly; validate with 2-3 years of data,Planning estimate
+3,"Tag tickets, cut reassignments",41% of tickets are reassigned; priority tagger is right for 77% of tickets,"Each hand-off adds delay: median 2.5 hours with none, 244 hours with 5 or more",Pilot priority suggestions; get the department field,Priority ready; department blocked
+4,Anticipate changes and failures,Watchlist finds change-linked tickets at 20x chance; 89% of hardware faults recognised,Review risky assets early; route hardware faults directly,Weekly watchlist review; pilot hardware routing,Ready; misconfiguration blocked

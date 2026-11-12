@@ -1,0 +1,10 @@
+Priority_Order,Priority,Improvement,Benefit,Needs
+1,Quick win,Agree the daily alert volume with the service desk,Alerts match what the desk can handle,One workshop
+1,Quick win,Confirm when six ticket fields are filled in,Up to 79 critical tickets caught instead of 67,Process owner confirmation
+1,Quick win,Pilot hardware routing,71% of hardware faults could go straight to the hardware team,ServiceNow routing rule
+2,High,Add a department or assignment-group field,Enables department tagging and fewer reassignments,Data owner (requested)
+2,High,Extend the history to 2-3 years,Validated forecasts with yearly seasonality,Larger data extract
+3,Medium,Add CMDB asset relationships,Enables misconfiguration prediction,CMDB access
+3,Medium,Score tickets live in ServiceNow,Real-time alerts at ticket creation,API and integration
+3,Medium,Monitor and retrain models monthly,Catches drift: critical-ticket rate already fell from 2.1% to about 1.2%,Monthly refresh
+4,Later,Use ticket descriptions (NLP),"Better priority, department and fault-type suggestions",Description field

@@ -1,0 +1,397 @@
+Date,Asset_Type,Outcome,Tickets
+2014-02-01,application,Correctly not flagged,5
+2014-02-01,application,False alarm,1
+2014-02-03,Unknown,Correctly not flagged,2
+2014-02-03,application,Caught,1
+2014-02-03,application,Correctly not flagged,337
+2014-02-03,application,Missed,1
+2014-02-03,computer,Caught,4
+2014-02-03,computer,Correctly not flagged,21
+2014-02-03,computer,False alarm,3
+2014-02-03,database,Correctly not flagged,5
+2014-02-03,hardware,Correctly not flagged,4
+2014-02-03,officeelectronics,Correctly not flagged,1
+2014-02-03,software,Correctly not flagged,3
+2014-02-03,storage,Correctly not flagged,7
+2014-02-03,subapplication,Correctly not flagged,68
+2014-02-03,subapplication,Missed,1
+2014-02-04,application,Correctly not flagged,292
+2014-02-04,application,Missed,1
+2014-02-04,computer,Caught,2
+2014-02-04,computer,Correctly not flagged,28
+2014-02-04,computer,False alarm,6
+2014-02-04,database,Correctly not flagged,3
+2014-02-04,displaydevice,Correctly not flagged,1
+2014-02-04,hardware,Correctly not flagged,3
+2014-02-04,networkcomponents,Correctly not flagged,1
+2014-02-04,officeelectronics,Correctly not flagged,2
+2014-02-04,software,Correctly not flagged,3
+2014-02-04,storage,Correctly not flagged,3
+2014-02-04,subapplication,Correctly not flagged,89
+2014-02-05,application,Correctly not flagged,303
+2014-02-05,application,Missed,2
+2014-02-05,computer,Caught,4
+2014-02-05,computer,Correctly not flagged,15
+2014-02-05,computer,False alarm,4
+2014-02-05,database,Correctly not flagged,3
+2014-02-05,hardware,Correctly not flagged,2
+2014-02-05,networkcomponents,False alarm,2
+2014-02-05,software,Correctly not flagged,2
+2014-02-05,storage,Correctly not flagged,8
+2014-02-05,subapplication,Correctly not flagged,66
+2014-02-06,Unknown,Correctly not flagged,1
+2014-02-06,application,Correctly not flagged,272
+2014-02-06,application,Missed,1
+2014-02-06,computer,Caught,2
+2014-02-06,computer,Correctly not flagged,25
+2014-02-06,computer,False alarm,2
+2014-02-06,displaydevice,Correctly not flagged,1
+2014-02-06,hardware,Correctly not flagged,2
+2014-02-06,networkcomponents,Caught,1
+2014-02-06,networkcomponents,False alarm,1
+2014-02-06,officeelectronics,Correctly not flagged,3
+2014-02-06,software,Correctly not flagged,3
+2014-02-06,storage,Correctly not flagged,10
+2014-02-06,subapplication,Correctly not flagged,80
+2014-02-06,subapplication,Missed,1
+2014-02-07,Unknown,False alarm,1
+2014-02-07,application,Correctly not flagged,238
+2014-02-07,application,False alarm,2
+2014-02-07,computer,Caught,4
+2014-02-07,computer,Correctly not flagged,13
+2014-02-07,computer,False alarm,3
+2014-02-07,database,Correctly not flagged,4
+2014-02-07,displaydevice,Correctly not flagged,2
+2014-02-07,hardware,Correctly not flagged,4
+2014-02-07,networkcomponents,False alarm,1
+2014-02-07,storage,Correctly not flagged,8
+2014-02-07,storage,False alarm,1
+2014-02-07,subapplication,Correctly not flagged,65
+2014-02-08,application,False alarm,3
+2014-02-08,computer,False alarm,1
+2014-02-09,hardware,False alarm,1
+2014-02-10,application,Correctly not flagged,285
+2014-02-10,application,Missed,1
+2014-02-10,computer,Caught,5
+2014-02-10,computer,Correctly not flagged,22
+2014-02-10,computer,False alarm,2
+2014-02-10,database,Correctly not flagged,3
+2014-02-10,displaydevice,Correctly not flagged,2
+2014-02-10,hardware,Correctly not flagged,5
+2014-02-10,networkcomponents,False alarm,1
+2014-02-10,officeelectronics,Correctly not flagged,1
+2014-02-10,software,Correctly not flagged,4
+2014-02-10,storage,Correctly not flagged,3
+2014-02-10,subapplication,Correctly not flagged,73
+2014-02-10,subapplication,Missed,2
+2014-02-11,application,Correctly not flagged,260
+2014-02-11,application,Missed,3
+2014-02-11,computer,Correctly not flagged,19
+2014-02-11,computer,False alarm,2
+2014-02-11,database,Correctly not flagged,2
+2014-02-11,hardware,Correctly not flagged,2
+2014-02-11,networkcomponents,Correctly not flagged,1
+2014-02-11,software,Correctly not flagged,1
+2014-02-11,software,Missed,1
+2014-02-11,storage,Correctly not flagged,5
+2014-02-11,subapplication,Correctly not flagged,69
+2014-02-12,Unknown,Correctly not flagged,1
+2014-02-12,application,Caught,1
+2014-02-12,application,Correctly not flagged,217
+2014-02-12,computer,Caught,1
+2014-02-12,computer,Correctly not flagged,19
+2014-02-12,computer,False alarm,2
+2014-02-12,computer,Missed,1
+2014-02-12,database,Correctly not flagged,3
+2014-02-12,displaydevice,Correctly not flagged,4
+2014-02-12,hardware,Correctly not flagged,1
+2014-02-12,networkcomponents,Caught,1
+2014-02-12,networkcomponents,False alarm,3
+2014-02-12,officeelectronics,Correctly not flagged,1
+2014-02-12,software,Correctly not flagged,1
+2014-02-12,storage,Correctly not flagged,3
+2014-02-12,subapplication,Correctly not flagged,68
+2014-02-13,application,Correctly not flagged,247
+2014-02-13,computer,Correctly not flagged,22
+2014-02-13,computer,False alarm,4
+2014-02-13,database,Correctly not flagged,1
+2014-02-13,displaydevice,Correctly not flagged,3
+2014-02-13,hardware,Correctly not flagged,3
+2014-02-13,networkcomponents,False alarm,1
+2014-02-13,software,Correctly not flagged,3
+2014-02-13,storage,Correctly not flagged,4
+2014-02-13,subapplication,Correctly not flagged,43
+2014-02-14,application,Correctly not flagged,165
+2014-02-14,application,False alarm,5
+2014-02-14,application,Missed,1
+2014-02-14,computer,Caught,2
+2014-02-14,computer,Correctly not flagged,19
+2014-02-14,computer,False alarm,3
+2014-02-14,database,Correctly not flagged,2
+2014-02-14,displaydevice,Correctly not flagged,2
+2014-02-14,hardware,Correctly not flagged,3
+2014-02-14,networkcomponents,False alarm,1
+2014-02-14,storage,Correctly not flagged,5
+2014-02-14,subapplication,Correctly not flagged,39
+2014-02-15,application,Correctly not flagged,10
+2014-02-15,application,False alarm,1
+2014-02-15,application,Missed,2
+2014-02-15,subapplication,Correctly not flagged,3
+2014-02-16,application,Correctly not flagged,2
+2014-02-16,storage,False alarm,1
+2014-02-17,Phone,Caught,1
+2014-02-17,application,Correctly not flagged,326
+2014-02-17,application,False alarm,2
+2014-02-17,computer,Caught,2
+2014-02-17,computer,Correctly not flagged,30
+2014-02-17,computer,False alarm,1
+2014-02-17,database,Correctly not flagged,1
+2014-02-17,displaydevice,Correctly not flagged,6
+2014-02-17,hardware,Correctly not flagged,3
+2014-02-17,software,Correctly not flagged,2
+2014-02-17,storage,Correctly not flagged,5
+2014-02-17,storage,False alarm,1
+2014-02-17,subapplication,Correctly not flagged,67
+2014-02-18,application,Correctly not flagged,254
+2014-02-18,application,Missed,1
+2014-02-18,computer,Correctly not flagged,22
+2014-02-18,computer,False alarm,1
+2014-02-18,database,Correctly not flagged,3
+2014-02-18,hardware,Correctly not flagged,1
+2014-02-18,networkcomponents,Correctly not flagged,1
+2014-02-18,networkcomponents,False alarm,1
+2014-02-18,officeelectronics,Correctly not flagged,1
+2014-02-18,software,Correctly not flagged,2
+2014-02-18,storage,Correctly not flagged,2
+2014-02-18,subapplication,Correctly not flagged,55
+2014-02-18,subapplication,Missed,1
+2014-02-19,application,Correctly not flagged,241
+2014-02-19,application,False alarm,1
+2014-02-19,computer,Caught,1
+2014-02-19,computer,Correctly not flagged,15
+2014-02-19,computer,False alarm,4
+2014-02-19,database,Correctly not flagged,2
+2014-02-19,displaydevice,Correctly not flagged,7
+2014-02-19,hardware,Correctly not flagged,8
+2014-02-19,officeelectronics,Correctly not flagged,1
+2014-02-19,software,Correctly not flagged,2
+2014-02-19,storage,Correctly not flagged,4
+2014-02-19,subapplication,Correctly not flagged,66
+2014-02-19,subapplication,Missed,1
+2014-02-20,Unknown,Correctly not flagged,1
+2014-02-20,application,Correctly not flagged,230
+2014-02-20,computer,Correctly not flagged,19
+2014-02-20,database,Correctly not flagged,1
+2014-02-20,displaydevice,Correctly not flagged,1
+2014-02-20,hardware,Correctly not flagged,1
+2014-02-20,networkcomponents,False alarm,1
+2014-02-20,networkcomponents,Missed,1
+2014-02-20,officeelectronics,Correctly not flagged,1
+2014-02-20,software,Correctly not flagged,1
+2014-02-20,storage,Correctly not flagged,8
+2014-02-20,subapplication,Correctly not flagged,70
+2014-02-21,Unknown,False alarm,1
+2014-02-21,application,Correctly not flagged,192
+2014-02-21,application,False alarm,3
+2014-02-21,application,Missed,4
+2014-02-21,computer,Caught,2
+2014-02-21,computer,Correctly not flagged,23
+2014-02-21,computer,False alarm,7
+2014-02-21,displaydevice,Correctly not flagged,2
+2014-02-21,hardware,Correctly not flagged,2
+2014-02-21,networkcomponents,False alarm,1
+2014-02-21,software,Correctly not flagged,1
+2014-02-21,storage,Correctly not flagged,6
+2014-02-21,subapplication,Correctly not flagged,69
+2014-02-22,application,Correctly not flagged,3
+2014-02-23,application,Correctly not flagged,3
+2014-02-24,application,Correctly not flagged,241
+2014-02-24,application,Missed,3
+2014-02-24,computer,Caught,4
+2014-02-24,computer,Correctly not flagged,16
+2014-02-24,computer,False alarm,2
+2014-02-24,computer,Missed,1
+2014-02-24,database,Correctly not flagged,8
+2014-02-24,hardware,Correctly not flagged,1
+2014-02-24,officeelectronics,Correctly not flagged,2
+2014-02-24,software,Correctly not flagged,2
+2014-02-24,storage,Correctly not flagged,3
+2014-02-24,subapplication,Correctly not flagged,43
+2014-02-25,application,Correctly not flagged,247
+2014-02-25,computer,Caught,3
+2014-02-25,computer,Correctly not flagged,21
+2014-02-25,computer,False alarm,3
+2014-02-25,database,Correctly not flagged,7
+2014-02-25,displaydevice,Correctly not flagged,1
+2014-02-25,hardware,Correctly not flagged,1
+2014-02-25,networkcomponents,Correctly not flagged,1
+2014-02-25,software,Correctly not flagged,1
+2014-02-25,storage,Correctly not flagged,5
+2014-02-25,subapplication,Correctly not flagged,53
+2014-02-26,application,Correctly not flagged,221
+2014-02-26,application,Missed,1
+2014-02-26,computer,Caught,1
+2014-02-26,computer,Correctly not flagged,14
+2014-02-26,computer,False alarm,2
+2014-02-26,database,Correctly not flagged,4
+2014-02-26,hardware,Correctly not flagged,4
+2014-02-26,networkcomponents,False alarm,1
+2014-02-26,storage,Correctly not flagged,3
+2014-02-26,subapplication,Correctly not flagged,61
+2014-02-27,application,Correctly not flagged,243
+2014-02-27,application,Missed,1
+2014-02-27,computer,Caught,2
+2014-02-27,computer,Correctly not flagged,23
+2014-02-27,computer,False alarm,1
+2014-02-27,database,Correctly not flagged,3
+2014-02-27,displaydevice,Correctly not flagged,2
+2014-02-27,hardware,Correctly not flagged,5
+2014-02-27,software,Correctly not flagged,2
+2014-02-27,storage,Correctly not flagged,5
+2014-02-27,storage,False alarm,1
+2014-02-27,subapplication,Correctly not flagged,62
+2014-02-28,application,Correctly not flagged,166
+2014-02-28,application,False alarm,3
+2014-02-28,application,Missed,2
+2014-02-28,computer,Caught,1
+2014-02-28,computer,Correctly not flagged,10
+2014-02-28,computer,False alarm,2
+2014-02-28,database,Correctly not flagged,1
+2014-02-28,hardware,Correctly not flagged,1
+2014-02-28,networkcomponents,False alarm,1
+2014-02-28,officeelectronics,Correctly not flagged,2
+2014-02-28,software,Correctly not flagged,2
+2014-02-28,storage,Correctly not flagged,12
+2014-02-28,subapplication,Correctly not flagged,58
+2014-03-01,application,Correctly not flagged,5
+2014-03-01,application,False alarm,1
+2014-03-01,hardware,False alarm,1
+2014-03-01,software,Correctly not flagged,1
+2014-03-01,subapplication,Correctly not flagged,1
+2014-03-02,application,Caught,1
+2014-03-02,computer,False alarm,1
+2014-03-02,storage,False alarm,2
+2014-03-03,application,Correctly not flagged,175
+2014-03-03,application,False alarm,1
+2014-03-03,application,Missed,3
+2014-03-03,computer,Correctly not flagged,20
+2014-03-03,computer,False alarm,2
+2014-03-03,database,Correctly not flagged,4
+2014-03-03,hardware,Correctly not flagged,1
+2014-03-03,software,Correctly not flagged,4
+2014-03-03,storage,Correctly not flagged,6
+2014-03-03,subapplication,Correctly not flagged,58
+2014-03-04,application,Correctly not flagged,207
+2014-03-04,application,False alarm,1
+2014-03-04,computer,Caught,4
+2014-03-04,computer,Correctly not flagged,23
+2014-03-04,database,Correctly not flagged,2
+2014-03-04,displaydevice,Correctly not flagged,1
+2014-03-04,hardware,Correctly not flagged,3
+2014-03-04,storage,Correctly not flagged,5
+2014-03-04,subapplication,Correctly not flagged,56
+2014-03-05,application,Correctly not flagged,188
+2014-03-05,application,Missed,1
+2014-03-05,computer,Caught,1
+2014-03-05,computer,Correctly not flagged,24
+2014-03-05,computer,False alarm,1
+2014-03-05,database,Correctly not flagged,2
+2014-03-05,displaydevice,Correctly not flagged,2
+2014-03-05,hardware,Correctly not flagged,8
+2014-03-05,storage,Correctly not flagged,6
+2014-03-05,subapplication,Correctly not flagged,53
+2014-03-06,application,Correctly not flagged,224
+2014-03-06,application,False alarm,1
+2014-03-06,computer,Caught,1
+2014-03-06,computer,Correctly not flagged,25
+2014-03-06,computer,False alarm,3
+2014-03-06,database,Correctly not flagged,2
+2014-03-06,hardware,Correctly not flagged,2
+2014-03-06,networkcomponents,Correctly not flagged,1
+2014-03-06,networkcomponents,False alarm,1
+2014-03-06,officeelectronics,Correctly not flagged,2
+2014-03-06,software,Correctly not flagged,3
+2014-03-06,storage,Correctly not flagged,6
+2014-03-06,storage,False alarm,1
+2014-03-06,subapplication,Correctly not flagged,68
+2014-03-06,subapplication,Missed,1
+2014-03-07,application,Correctly not flagged,184
+2014-03-07,application,False alarm,3
+2014-03-07,computer,Caught,1
+2014-03-07,computer,Correctly not flagged,11
+2014-03-07,computer,False alarm,4
+2014-03-07,database,Correctly not flagged,1
+2014-03-07,displaydevice,Correctly not flagged,1
+2014-03-07,hardware,Correctly not flagged,1
+2014-03-07,networkcomponents,Caught,1
+2014-03-07,networkcomponents,False alarm,1
+2014-03-07,software,Correctly not flagged,6
+2014-03-07,storage,Correctly not flagged,1
+2014-03-07,subapplication,Correctly not flagged,51
+2014-03-08,application,Correctly not flagged,5
+2014-03-08,computer,False alarm,1
+2014-03-08,networkcomponents,False alarm,1
+2014-03-08,subapplication,Correctly not flagged,1
+2014-03-08,subapplication,False alarm,1
+2014-03-09,application,Correctly not flagged,1
+2014-03-10,application,Correctly not flagged,229
+2014-03-10,computer,Caught,4
+2014-03-10,computer,Correctly not flagged,22
+2014-03-10,computer,False alarm,5
+2014-03-10,database,Correctly not flagged,2
+2014-03-10,displaydevice,Correctly not flagged,6
+2014-03-10,hardware,Correctly not flagged,7
+2014-03-10,hardware,Missed,3
+2014-03-10,software,Correctly not flagged,1
+2014-03-10,storage,Correctly not flagged,9
+2014-03-10,storage,False alarm,1
+2014-03-10,subapplication,Correctly not flagged,55
+2014-03-11,application,Correctly not flagged,231
+2014-03-11,application,Missed,1
+2014-03-11,computer,Caught,3
+2014-03-11,computer,Correctly not flagged,29
+2014-03-11,computer,False alarm,1
+2014-03-11,database,Correctly not flagged,3
+2014-03-11,displaydevice,Correctly not flagged,4
+2014-03-11,hardware,Correctly not flagged,2
+2014-03-11,networkcomponents,False alarm,1
+2014-03-11,officeelectronics,Correctly not flagged,1
+2014-03-11,software,Correctly not flagged,5
+2014-03-11,storage,Correctly not flagged,5
+2014-03-11,subapplication,Correctly not flagged,51
+2014-03-12,application,Correctly not flagged,215
+2014-03-12,application,Missed,2
+2014-03-12,computer,Caught,3
+2014-03-12,computer,Correctly not flagged,19
+2014-03-12,computer,False alarm,2
+2014-03-12,database,Correctly not flagged,1
+2014-03-12,hardware,Correctly not flagged,17
+2014-03-12,software,Correctly not flagged,2
+2014-03-12,storage,Correctly not flagged,4
+2014-03-12,subapplication,Correctly not flagged,44
+2014-03-13,application,Correctly not flagged,188
+2014-03-13,application,Missed,3
+2014-03-13,computer,Caught,1
+2014-03-13,computer,Correctly not flagged,27
+2014-03-13,computer,False alarm,2
+2014-03-13,database,Correctly not flagged,1
+2014-03-13,hardware,Correctly not flagged,3
+2014-03-13,networkcomponents,False alarm,1
+2014-03-13,software,Correctly not flagged,3
+2014-03-13,storage,Correctly not flagged,3
+2014-03-13,subapplication,Correctly not flagged,57
+2014-03-14,application,Correctly not flagged,191
+2014-03-14,application,False alarm,2
+2014-03-14,computer,Caught,2
+2014-03-14,computer,Correctly not flagged,14
+2014-03-14,computer,False alarm,15
+2014-03-14,database,Correctly not flagged,1
+2014-03-14,hardware,Correctly not flagged,4
+2014-03-14,software,Correctly not flagged,4
+2014-03-14,storage,Correctly not flagged,7
+2014-03-14,subapplication,Correctly not flagged,57
+2014-03-15,application,Correctly not flagged,3
+2014-03-15,computer,False alarm,1
+2014-03-15,hardware,Correctly not flagged,1
+2014-03-16,application,False alarm,1
+2014-03-16,subapplication,False alarm,1
