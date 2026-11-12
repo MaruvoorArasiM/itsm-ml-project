@@ -223,4 +223,5 @@ __marimo__/
 data/
 models/
 *.pdf
+!reports/powerbi/*.pdf
 docs/

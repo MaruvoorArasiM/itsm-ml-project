@@ -15,6 +15,21 @@ Machine learning on IT service-management (ITSM) tickets for ABC Tech, in four t
 
 Every notebook ends with its findings and limits; every table and figure is numbered and cited in the text.
 
+## Dashboard
+
+A five-page Power BI dashboard presents the results to service-desk and management users: **[ITSM_Service_Desk_Dashboard.pdf](reports/powerbi/ITSM_Service_Desk_Dashboard.pdf)** (the editable report is `ITSM_Service_Desk_Dashboard.pbix` in the same folder).
+
+|Page|What it shows|
+|-|-|
+|Business Summary|Headline numbers, one row per objective (result, business value, next step, status) and a prioritised list of future improvements|
+|Overview|Daily tickets by category, tickets and reassignment rate by asset type|
+|High-Priority Risk|Critical-ticket rate by asset type and a weekday-by-hour heatmap of when critical tickets arrive|
+|Model Alerts|Caught, missed and false-alarm tickets per day in the test period|
+|Forecast|Actual and forecast daily tickets, with quarterly and annual forecasts and their ranges|
+
+The data comes from `10_powerbi_export` (counts and forecasts only) plus two hand-written summary tables, `objective_summary.csv` and `future_improvements.csv`, all in `reports/powerbi/`. No ticket rows or asset codes are included.
+The twelve DAX measures behind the visuals are listed in [dax_measures.md](reports/powerbi/dax_measures.md).
+
 ## Notebooks
 
 Run them in this order (each one reads the files the previous ones write):
@@ -30,6 +45,7 @@ Run them in this order (each one reads the files the previous ones write):
 |`07_track2_volume`|Objective 2: daily, quarterly and annual forecasts (all tickets, and incidents only)|
 |`08_track4_rfc`|Objective 4: change-link watchlist and failure-type suggestion|
 |`09_track3_triage`|Objective 3: priority tagger and reassignment risk|
+|`10_powerbi_export`|Summary tables and forecasts for the Power BI dashboard|
 
 Notebook 02 has a switch, `USE_DATABASE = False`, to rerun from the saved snapshot without a database connection.
 
@@ -59,15 +75,16 @@ Notebook 02 has a switch, `USE_DATABASE = False`, to rerun from the saved snapsh
 ## Repository layout
 
 ```
-notebooks/          the nine notebooks above
+notebooks/          the ten notebooks above
 src/                helpers written by the notebooks (db.py, columns.py, project_config.py, features.py)
 reports/figures/    figures saved by the notebooks (aggregates only)
+reports/powerbi/    dashboard data (aggregates only), the Power BI report and its PDF
 data_issues_log.md  data problems found and how each was handled
 requirements.txt    pinned package versions
 .env.example        template for the local .env (key names only)
 ```
 
-`data/`, `models/`, `docs/`, `.env` and PDF files are git-ignored. Notebook outputs show aggregates only: no ticket rows, credentials or asset codes.
+`data/`, `models/`, `docs/`, `.env` and PDF files (except the dashboard PDF) are git-ignored. Notebook outputs show aggregates only: no ticket rows, credentials or asset codes.
 
 ## Limits and future work
 
